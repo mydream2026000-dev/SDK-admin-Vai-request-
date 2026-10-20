@@ -1,0 +1,27 @@
+services:
+  - type: worker
+    name: premium-smm-telegram-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: ORDER_GROUP_ID
+        sync: false
+      - key: FORCE_GROUP_1
+        sync: false
+      - key: FORCE_GROUP_2
+        sync: false
+      - key: BRAND_NAME
+        value: NOVA SMM
+      - key: SUPPORT_USERNAME
+        sync: false
+      - key: DB_PATH
+        value: /var/data/smm_panel.db
+    disk:
+      name: smm-panel-data
+      mountPath: /var/data
+      sizeGB: 1
